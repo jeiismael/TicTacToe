@@ -8,7 +8,12 @@ const PORT = 3001;
 app.use(bodyParser.json());
 
 // Set up CORS middleware for all routes
-app.use(cors());
+app.use(cors({
+  origin: ['https://codepen.io', 'http://localhost:3000'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type'],
+  credentials: true, 
+}));
 
 let board: (string | null)[] = Array(9).fill(null);
 let isXNext = true;

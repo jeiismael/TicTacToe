@@ -1,0 +1,93 @@
+/* TicTacToe.css */
+
+body {
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(to right, #3494e6, #ec6ead);  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  
+}
+
+#root {
+  text-align: center;
+}
+
+.container {
+  width: 500px;
+  height: 500px;
+  background: rgba(245, 245, 245, 0.75);
+  box-shadow: 0px 4px 10px 2px rgba(0, 0, 0, 0.25);
+  border-radius: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.status {
+  min-height: 1.5rem;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-gap: 10px;
+}
+
+.board-row {
+  display: flex;
+}
+
+.square {
+  box-sizing: border-box;
+  width: 100px;
+  height: 100px;
+  font-size: 2rem;
+  font-weight: bold;
+  line-height: 100px; 
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 4px solid #333; 
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); 
+}
+
+.square:hover {
+  background-color: rgba(240, 240, 240, 0.8);
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3); 
+}
+
+.board-row {
+  position: relative;
+  height: 100px; /* Add this line */
+}
+
+.board-row::after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+.restart-button {
+  margin-top: 20px;
+  font-size: 1rem;
+  padding: 10px 20px;
+  cursor: pointer;
+  background-color: #4caf50; /* Green color */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.restart-button:hover {
+  background-color: #45a049; /* Darker shade of green on hover */
+}

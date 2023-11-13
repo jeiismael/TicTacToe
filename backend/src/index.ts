@@ -1,4 +1,3 @@
-// src/index.ts
 import express, { Request, Response } from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
@@ -9,15 +8,7 @@ const PORT = 3001;
 app.use(bodyParser.json());
 
 // Set up CORS middleware for all routes
-app.use(cors({
-  origin: ['https://codepen.io', 'http://localhost:3000'],
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type'],
-  credentials: true, // Allow cookies and credentials
-}));
-
-// Handle preflight requests
-app.options('*', cors());
+app.use(cors());
 
 let board: (string | null)[] = Array(9).fill(null);
 let isXNext = true;

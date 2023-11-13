@@ -7,7 +7,13 @@ const app = express();
 const PORT = 3001;
 
 app.use(bodyParser.json());
-app.use(cors());
+
+// Set up CORS middleware
+app.use(cors({
+  origin: ['https://codepen.io', 'http://localhost:3000'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type'],
+}));
 
 let board: (string | null)[] = Array(9).fill(null);
 let isXNext = true;
@@ -29,9 +35,7 @@ app.post('/api/move', (req: Request, res: Response) => {
   res.json({ board, isXNext });
 });
 
-
 app.post('/api/restart', (req: Request, res: Response) => {
-  
   board = Array(9).fill(null);
   isXNext = true;
 

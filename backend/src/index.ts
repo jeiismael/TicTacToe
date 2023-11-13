@@ -3,24 +3,26 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 
 const app = express();
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 
 app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, GET, PUT');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
   next();
 });
 
 app.use(bodyParser.json());
 
 // Set up CORS middleware for all routes
-app.use(cors({
-  origin: ['https://codepen.io', 'http://localhost:3000'],
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type'],
-  credentials: true, 
-}));
+app.use(
+  cors({
+    origin: ['https://codepen.io', 'http://localhost:3000'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type'],
+    credentials: true,
+  })
+);
 
 let board: (string | null)[] = Array(9).fill(null);
 let isXNext = true;
@@ -49,6 +51,9 @@ app.post('/api/restart', (req: Request, res: Response) => {
   res.json({ board, isXNext });
 });
 
+// Specify the 'start' script to build and run the application
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
+
+export default app;
